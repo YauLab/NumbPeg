@@ -1,8 +1,5 @@
 require(lme4)
 require(readxl)
-require(ggplot2)
-require(broom.mixed) # for tidy
-require(gridExtra)
 require(car)
 require(emmeans)
 

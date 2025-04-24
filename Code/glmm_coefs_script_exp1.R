@@ -1,10 +1,8 @@
-require(lme4)
-# require(ggplot2)
-# require(broom.mixed) # for tidy
-# require(gridExtra)
-# require(kableExtra)
-require(emmeans)
 require(readxl)
+require(lme4)
+require(car)
+require(emmeans)
+
 
 
 # choose the dataset

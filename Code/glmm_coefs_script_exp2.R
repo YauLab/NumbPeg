@@ -1,9 +1,8 @@
-require(lme4)
-# require(ggplot2)
-# require(broom.mixed) # for tidy
-# require(kableExtra)
-require(emmeans)
 require(readxl)
+require(lme4)
+require(car)
+require(emmeans)
+
 
 # choose the dataset
 data <- read_excel('/Users/kevin/Desktop/Kevin/NumbPeg/Manuscript/Revisions/DataShare/lmm_coefs_exp_decay_exp2.xlsx')

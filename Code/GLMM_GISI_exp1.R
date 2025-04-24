@@ -1,9 +1,9 @@
+require(readxl)
 require(lme4)
-require(ggplot2)
+require(car)
 require(emmeans)
 require(dplyr)
-# require(broom.mixed)
-# require(kableExtra)
+
 
 setwd('/Users/kevin/Desktop/Kevin/NumbPeg/Manuscript/Revisions/DataShare')
 # setwd('/path/to/data')
