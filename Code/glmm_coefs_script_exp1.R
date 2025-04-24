@@ -6,8 +6,7 @@ require(emmeans)
 
 
 # choose the dataset
-data <- readxl::read_excel('/Users/kevin/Desktop/Kevin/NumbPeg/Manuscript/Revisions/DataShare/lmm_coefs_exp_decay_exp1.xlsx')
-# data <- readxl::read_excel('/path/to/data/lmm_coefs_exp_decay_exp1.xlsx')
+data <- readxl::read_excel('/path/to/data/lmm_coefs_exp_decay_exp1.xlsx')
 
 
 # remove b_1 <= 0 due to model fit errors 

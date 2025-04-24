@@ -5,8 +5,7 @@ require(emmeans)
 
 
 #### exp 1 ####
-data1 <- read_excel('/Users/kevin/Desktop/Kevin/NumbPeg/Manuscript/Revisions/DataShare/lmm_table_xcorr_offset_exp1.xlsx')
-# data1 <- read_excel('/path/to/data/lmm_table_xcorr_offset_exp1.xlsx')
+data1 <- read_excel('/path/to/data/lmm_table_xcorr_offset_exp1.xlsx')
 
 
 data1$Drug <- relevel(factor(data1$Drug, levels = c('None','Sham','Anesthesia')), ref = "None")

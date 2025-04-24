@@ -3,8 +3,7 @@ require(lme4)
 require(car)
 require(emmeans)
 
-data <- read_excel("/Users/kevin/Desktop/Kevin/NumbPeg/Manuscript/Revisions/DataShare/force_table_exp2.xlsx")
-# data <- read_excel("/path/to/data/force_table_exp2.xlsx")
+data <- read_excel("/path/to/data/force_table_exp2.xlsx")
 
 
 

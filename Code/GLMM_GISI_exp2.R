@@ -5,8 +5,7 @@ require(emmeans)
 
 
 
-setwd('/Users/kevin/Desktop/Kevin/NumbPeg/Manuscript/Revisions/DataShare')
-# setwd('/path/to/data')
+setwd('/path/to/data')
 
 # import the data
 place_collect <- readxl::read_excel('GazeIndex_LMM_table_ProgressDuring_PlaceCollect_exp2.xlsx')
