@@ -1,11 +1,12 @@
-require(readxl)
-require(lme4)
-require(car)
-require(emmeans)
-require(dplyr)
+library(readxl)
+library(lme4)
+library(car)
+library(emmeans)
+library(dplyr)
 
 
-setwd('/path/to/data')
+setwd('/Users/kevin/Desktop/Kevin/NumbPeg/Manuscript/Revisions/DataShare')
+# setwd('/path/to/data')
 
 place_collect <- readxl::read_excel('GazeIndex_LMM_table_ProgressDuring_PlaceCollect_exp1.xlsx')
 place_deliver <- readxl::read_excel('GazeIndex_LMM_table_ProgressDuring_PlaceDeliver_exp1.xlsx')
@@ -37,7 +38,7 @@ model_p_free <- lmer(mmDifference ~ Block*Hand*Progress + (1+Session|Subject),
 hist(residuals(model_p_free))
 car::Anova(model_p_free)
 emres_p_free <- emmeans(model_p_free, ~ Block*Hand*Progress)
-contrast(emres_p_free, interaction=c('pairwise','pairwise'), Block*Hand, by='Progress')
+contrast(emres_p_free, interaction=c('pairwise','pairwise'), Block*Hand, by='Progress', adjust='mvt')
 emmeans(model_p_free, pairwise ~ Block*Hand)
 
 model_pc <- lmer(mmDifference ~ Block*Hand*Progress + (1+Block*Hand|Subject) + (0 + Session|Subject),
@@ -48,8 +49,8 @@ model_pc <- lmer(mmDifference ~ Block*Hand*Progress + (1+Block*Hand|Subject) + (
 hist(residuals(model_pc))
 car::Anova(model_pc)
 emres_pc <- emmeans(model_pc, ~ Block*Hand*Progress)
-contrast(emres_pc, interaction=c('pairwise','pairwise'), Block*Hand, by='Progress')
-contrast(emres_pc, 'pairwise', by=c('Hand','Progress'))
+contrast(emres_pc, interaction=c('pairwise','pairwise'), Block*Hand, by='Progress', adjust='mvt')
+contrast(emres_pc, 'pairwise', by=c('Hand','Progress'), adjust='mvt')
 emmeans(model_pc, pairwise ~ Block*Hand)
 
 
@@ -60,7 +61,7 @@ model_p_transport <- lmer(mmDifference ~ Block*Hand*Progress + (1+Block*Hand|Sub
 
 car::Anova(model_p_transport)
 emres_p_transport <- emmeans(model_p_transport, ~ Block*Hand*Progress)
-contrast(emres_p_transport, interaction=c('pairwise','pairwise'), Block*Hand, by='Progress')
+contrast(emres_p_transport, interaction=c('pairwise','pairwise'), Block*Hand, by='Progress', adjust='mvt')
 emmeans(model_p_transport, pairwise ~ Block*Hand)
 
 model_pd <- lmer(mmDifference ~ Block*Hand*Progress + (1 + Block*Hand|Subject) + (0+Session|Subject),
@@ -70,7 +71,7 @@ model_pd <- lmer(mmDifference ~ Block*Hand*Progress + (1 + Block*Hand|Subject) +
 
 car::Anova(model_pd)
 emres_pd <- emmeans(model_pd, ~ Block*Hand*Progress)
-contrast(emres_pd, interaction=c('pairwise','pairwise'), Block*Hand, by='Progress')
+contrast(emres_pd, interaction=c('pairwise','pairwise'), Block*Hand, by='Progress', adjust='mvt')
 emmeans(model_pd, pairwise ~ Block*Hand)
 
 model_r_free <- lmer(mmDifference ~ Block*Hand*Progress + (1 + Block*Hand|Subject),
@@ -80,7 +81,7 @@ model_r_free <- lmer(mmDifference ~ Block*Hand*Progress + (1 + Block*Hand|Subjec
 
 car::Anova(model_r_free)
 emres_r_free <- emmeans(model_r_free, ~Block*Hand*Progress)
-contrast(emres_r_free, interaction=c('pairwise','pairwise'), by='Progress')
+contrast(emres_r_free, interaction=c('pairwise','pairwise'), by='Progress', adjust='mvt')
 emmeans(model_r_free, pairwise ~ Block*Hand)
 
 model_rc <- lmer(mmDifference ~ Block*Hand*Progress + (1+Block*Hand|Subject) + (0 + Session|Subject),
@@ -91,7 +92,7 @@ model_rc <- lmer(mmDifference ~ Block*Hand*Progress + (1+Block*Hand|Subject) + (
 
 car::Anova(model_rc)
 emres_rc <- emmeans(model_rc, ~Block*Hand*Progress)
-contrast(emres_rc, interaction=c('pairwise','pairwise'), by='Progress')
+contrast(emres_rc, interaction=c('pairwise','pairwise'), by='Progress', adjust='mvt')
 emmeans(model_rc, pairwise ~ Block*Hand)
 
 model_r_transport <- lmer(mmDifference ~ Block*Hand*Progress + (1+Block*Hand|Subject) + (0 + Session|Subject),
@@ -101,7 +102,7 @@ model_r_transport <- lmer(mmDifference ~ Block*Hand*Progress + (1+Block*Hand|Sub
 
 car::Anova(model_r_transport)
 emres_r_transport <- emmeans(model_r_transport, ~Block*Hand*Progress)
-contrast(emres_r_transport, interaction=c('pairwise','pairwise'), by='Progress')
+contrast(emres_r_transport, interaction=c('pairwise','pairwise'), by='Progress', adjust='mvt')
 emmeans(model_r_transport, pairwise ~ Block*Hand)
 
 model_rd <- lmer(mmDifference ~ Block*Hand*Progress + (1 + Session|Subject),
@@ -110,8 +111,8 @@ model_rd <- lmer(mmDifference ~ Block*Hand*Progress + (1 + Session|Subject),
 )
 
 car::Anova(model_rd)
-emres_rd <- emmeans(model_rd, ~Block*Hand*Progress)
-contrast(emres_rd, interaction=c('pairwise','pairwise'), by='Progress')
+emres_rd <- emmeans(model_rd, ~Block*Hand)
+contrast(emres_rd, interaction=c('revpairwise','pairwise'), adjust='mvt')
 emmeans(model_rd, pairwise ~ Block*Hand)
 
 # Looking at the mean GISI between coarse collect and precise collect

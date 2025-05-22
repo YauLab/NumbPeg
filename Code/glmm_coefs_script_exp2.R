@@ -5,7 +5,8 @@ require(emmeans)
 
 
 # choose the dataset
-data <- read_excel('/path/to/data/lmm_coefs_exp_decay_exp2.xlsx')
+data <- read_excel('/Users/kevin/Desktop/Kevin/NumbPeg/Manuscript/Revisions/DataShare/lmm_coefs_exp_decay_exp2.xlsx')
+# data <- read_excel('/path/to/data/lmm_coefs_exp_decay_exp2.xlsx')
 
 
 # generate the model and model summary 

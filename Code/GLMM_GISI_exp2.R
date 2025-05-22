@@ -1,11 +1,12 @@
-require(readxl)
-require(lme4)
-require(car)
-require(emmeans)
+library(readxl)
+library(lme4)
+library(car)
+library(emmeans)
 
 
 
-setwd('/path/to/data')
+setwd('/Users/kevin/Desktop/Kevin/NumbPeg/Manuscript/Revisions/DataShare')
+# setwd('/path/to/data')
 
 # import the data
 place_collect <- readxl::read_excel('GazeIndex_LMM_table_ProgressDuring_PlaceCollect_exp2.xlsx')
@@ -53,9 +54,9 @@ hist(residuals(model_p_free), main = "Histogram of Residuals p_free", xlab = "Re
 
 car::Anova(model_p_free)
 contrast(emmeans(model_p_free, ~Block),'revpairwise')
-contrast(emmeans(model_p_free, ~ Block*Hand), interaction=c('revpairwise','pairwise'))
+contrast(emmeans(model_p_free, ~ Block*Hand), interaction=c('revpairwise','pairwise'), adjust='mvt')
 emres_p_free <- emmeans(model_p_free, ~ Block*Hand*Progress)
-contrast(emres_p_free, interaction=c('revpairwise','pairwise'), Block*Hand, by='Progress')
+contrast(emres_p_free, interaction=c('revpairwise','pairwise'), Block*Hand, by='Progress', adjust='mvt')
 emmeans(model_p_free, pairwise ~ Block*Hand)
 
 
@@ -68,9 +69,9 @@ hist(residuals(model_pc), main = "Histogram of Residuals pc", xlab = "Residuals"
 
 car::Anova(model_pc)
 contrast(emmeans(model_pc, ~Block),'revpairwise')
-contrast(emmeans(model_pc, ~ Block*Hand), interaction=c('revpairwise','pairwise'))
+contrast(emmeans(model_pc, ~ Block*Hand), interaction=c('revpairwise','pairwise'), adjust='mvt')
 emres_pc <- emmeans(model_pc, pairwise ~ Block*Hand*Progress)
-contrast(emres_pc, interaction=c('revpairwise','pairwise'), Block*Hand, by='Progress')
+contrast(emres_pc, interaction=c('revpairwise','pairwise'), Block*Hand, by='Progress', adjust='mvt')
 
 model_p_transport <- lmer(mmDifference ~ Block*Hand*Progress + (1+Session|Subject),
                           data = place_transport,
@@ -81,9 +82,9 @@ hist(residuals(model_p_transport), main = "Histogram of Residuals p_transport", 
 
 car::Anova(model_p_transport)
 contrast(emmeans(model_p_transport, ~Block), 'revpairwise')
-contrast(emmeans(model_p_transport, ~Block*Hand), interaction=c('revpairwise','pairwise'))
+contrast(emmeans(model_p_transport, ~Block*Hand), interaction=c('revpairwise','pairwise'), adjust='mvt')
 emres_p_transport <- emmeans(model_p_transport, pairwise ~ Block*Hand*Progress)
-contrast(emres_p_transport, interaction=c('revpairwise','pairwise'), Block*Hand, by='Progress')
+contrast(emres_p_transport, interaction=c('revpairwise','pairwise'), Block*Hand, by='Progress', adjust='mvt')
 
 
 model_pd <- lmer(mmDifference ~ Block*Hand*Progress + (1+Session|Subject),
@@ -94,9 +95,9 @@ hist(residuals(model_pd), main = "Histogram of Residuals pd", xlab = "Residuals"
 
 car::Anova(model_pd)
 contrast(emmeans(model_pd, ~Block), 'revpairwise')
-contrast(emmeans(model_pd, ~Block*Hand), interaction=c('revpairwise','pairwise'))
+contrast(emmeans(model_pd, ~Block*Hand), interaction=c('revpairwise','pairwise'), adjust='mvt')
 emres_pd <- emmeans(model_pd, pairwise ~ Block*Hand*Progress)
-contrast(emres_pd, interaction=c('revpairwise','pairwise'), Block*Hand, by='Progress')
+contrast(emres_pd, interaction=c('revpairwise','pairwise'), Block*Hand, by='Progress', adjust='mvt')
 emmeans(model_pd, pairwise ~ Block*Hand)
 
 model_r_free <- lmer(mmDifference ~ Block*Hand*Progress + (1+Session|Subject),
@@ -108,9 +109,9 @@ hist(residuals(model_r_free), main = "Histogram of Residuals r_free", xlab = "Re
 
 car::Anova(model_r_free)
 contrast(emmeans(model_r_free, ~Block), 'revpairwise')
-contrast(emmeans(model_r_free, ~Block*Hand), interaction=c('revpairwise','pairwise'))
+contrast(emmeans(model_r_free, ~Block*Hand), interaction=c('revpairwise','pairwise'), adjust='mvt')
 emres_r_free <- emmeans(model_r_free, pairwise ~ Block*Hand*Progress)
-contrast(emres_r_free, interaction =c('revpairwise','pairwise'), Block*Hand, by='Progress')
+contrast(emres_r_free, interaction =c('revpairwise','pairwise'), Block*Hand, by='Progress', adjust='mvt')
 emmeans(model_r_free, pairwise ~ Block*Hand)
 
 
@@ -122,9 +123,9 @@ hist(residuals(model_rc), main = "Histogram of Residuals rc", xlab = "Residuals"
 
 car::Anova(model_rc)
 contrast(emmeans(model_rc, ~Block), 'revpairwise')
-contrast(emmeans(model_rc, ~Block*Hand), interaction=c('revpairwise','pairwise'))
+contrast(emmeans(model_rc, ~Block*Hand), interaction=c('revpairwise','pairwise'), adjust='mvt')
 emres_rc <- emmeans(model_rc, pairwise~Block*Hand*Progress)
-contrast(emres_rc, interaction=c('revpairwise','pairwise'),Block*Hand,by='Progress')
+contrast(emres_rc, interaction=c('revpairwise','pairwise'),Block*Hand,by='Progress', adjust='mvt')
 emmeans(model_rc, pairwise ~ Block*Hand)
 
 model_r_transport <- lmer(mmDifference ~ Block*Hand*Progress + (1+Session|Subject),
@@ -136,9 +137,9 @@ hist(residuals(model_r_transport), main = "Histogram of Residuals r_transport", 
 
 car::Anova(model_r_transport)
 contrast(emmeans(model_r_transport, ~Block),'revpairwise')
-contrast(emmeans(model_r_transport, ~Block*Hand), interaction=c('revpairwise','pairwise'))
+contrast(emmeans(model_r_transport, ~Block*Hand), interaction=c('revpairwise','pairwise'), adjust='mvt')
 emres_r_transport <- emmeans(model_r_transport, pairwise~Block*Hand*Progress)
-contrast(emres_r_transport, interaction=c('revpairwise','pairwise'), Block*Hand, by='Progress')
+contrast(emres_r_transport, interaction=c('revpairwise','pairwise'), Block*Hand, by='Progress', adjust='mvt')
 emmeans(model_r_transport, pairwise ~ Block*Hand)
 
 model_rd <- lmer(mmDifference ~ Block*Hand*Progress + (1+Session|Subject),
@@ -150,9 +151,9 @@ hist(residuals(model_rd), main = "Histogram of Residuals rd", xlab = "Residuals"
 
 car::Anova(model_rd)
 contrast(emmeans(model_rd, ~Block),'revpairwise')
-contrast(emmeans(model_rd, ~Block*Hand), interaction=c('revpairwise','pairwise'))
+contrast(emmeans(model_rd, ~Block*Hand), interaction=c('revpairwise','pairwise'), adjust='mvt')
 emres_rd <- emmeans(model_rd, pairwise~Block*Hand*Progress)
-contrast(emres_rd, interaction=c('revpairwise','pairwise'), Block*Hand, by='Progress')
+contrast(emres_rd, interaction=c('revpairwise','pairwise'), Block*Hand, by='Progress', adjust='mvt')
 emmeans(model_rd, pairwise ~ Block*Hand)
 
 
