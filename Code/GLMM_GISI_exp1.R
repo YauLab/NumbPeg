@@ -5,8 +5,7 @@ library(emmeans)
 library(dplyr)
 
 
-setwd('/Users/kevin/Desktop/Kevin/NumbPeg/Manuscript/Revisions/DataShare')
-# setwd('/path/to/data')
+setwd('/path/to/data')
 
 place_collect <- readxl::read_excel('GazeIndex_LMM_table_ProgressDuring_PlaceCollect_exp1.xlsx')
 place_deliver <- readxl::read_excel('GazeIndex_LMM_table_ProgressDuring_PlaceDeliver_exp1.xlsx')

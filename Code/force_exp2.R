@@ -6,8 +6,7 @@ require(broom.mixed)
 require(dplyr)
 require(ggplot2)
 
-data <- read_excel("/Users/kevin/Desktop/Kevin/NumbPeg/Manuscript/Revisions/DataShare/force_table_exp2.xlsx")
-# data <- read_excel("/path/to/data/force_table_exp2.xlsx")
+data <- read_excel("/path/to/data/force_table_exp2.xlsx")
 
 
 

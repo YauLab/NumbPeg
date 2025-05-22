@@ -6,8 +6,7 @@ library(broom.mixed)
 library(dplyr)
 library(ggplot2)
 
-data <- read_excel("/Users/kevin/Desktop/Kevin/NumbPeg/Manuscript/Revisions/DataShare/force_table_exp1.xlsx")
-# data <- read_excel("/path/to/data/force_table_exp1.xlsx")
+data <- read_excel("/path/to/data/force_table_exp1.xlsx")
 
 
 Place_FXLRForceDuration <- lmer(Place_FXLRForceDuration ~ Block*Hand + (1|Subject/Session),

@@ -3,12 +3,10 @@ library(readxl)
 library(car)
 library(emmeans)
 
-PeakForce_PlaceCollect <- read_excel("/Users/kevin/Desktop/Kevin/NumbPeg/Manuscript/Revisions/DataShare/GISI_PeakForce_PlaceCollect_exp1.xlsx")
-PeakForce_PlaceDeliver <- read_excel("/Users/kevin/Desktop/Kevin/NumbPeg/Manuscript/Revisions/DataShare/GISI_PeakForce_PlaceDeliver_exp1.xlsx")
-PeakForce_RetrieveCollect <- read_excel("/Users/kevin/Desktop/Kevin/NumbPeg/Manuscript/Revisions/DataShare/GISI_PeakForce_RetrieveCollect_exp1.xlsx")
-PeakForce_RetrieveDeliver <- read_excel("/Users/kevin/Desktop/Kevin/NumbPeg/Manuscript/Revisions/DataShare/GISI_PeakForce_RetrieveDeliver_exp1.xlsx")
-#glme_table <- read_excel("/Volumes/bcm-neuro-yau/data/DATA/PerAnesthesiaPeg/Final data/glme_table.xlsx")
-#View(TimeDuring_PlaceCollect)
+PeakForce_PlaceCollect <- read_excel("/path/to/data/GISI_PeakForce_PlaceCollect_exp1.xlsx")
+PeakForce_PlaceDeliver <- read_excel("/path/to/data/GISI_PeakForce_PlaceDeliver_exp1.xlsx")
+PeakForce_RetrieveCollect <- read_excel("/path/to/data/GISI_PeakForce_RetrieveCollect_exp1.xlsx")
+PeakForce_RetrieveDeliver <- read_excel("/path/to/data/GISI_PeakForce_RetrieveDeliver_exp1.xlsx")
 
 PlaceCollect_mmDifference <- lmer(mmDifference ~ Time*Hand + (1|Subject/Session),
                                      data=PeakForce_PlaceCollect)
