@@ -1,16 +1,16 @@
-require(readxl)
-require(lme4)
-require(car)
-require(emmeans)
-require(broom.mixed)
-require(dplyr)
-require(ggplot2)
+library(readxl)
+library(lme4)
+library(car)
+library(emmeans)
+library(broom.mixed)
+library(dplyr)
+library(ggplot2)
 
 data <- read_excel("/path/to/data/force_table_exp2.xlsx")
 
 
 
-Place_FXLRForceDuration <- lmer(Place_FXLRForceDuration ~ Block*Hand + (1|Subject/Session),
+Place_FXLRForceDuration <- lmer(Place_FXLRForceDuration ~ Block*Hand + (1|Subject/Round),
                                 data=data)
 car::Anova(Place_FXLRForceDuration)
 contrast(
@@ -18,7 +18,7 @@ contrast(
   interaction=c('revpairwise','revpairwise', adjust='mvt')
 )
 
-Place_FXLRForcePeak <- lmer(Place_FXLRForcePeak ~ Block*Hand + (1|Subject/Session),
+Place_FXLRForcePeak <- lmer(Place_FXLRForcePeak ~ Block*Hand + (1|Subject/Round),
                             data=data)
 car::Anova(Place_FXLRForcePeak)
 contrast(
@@ -50,7 +50,7 @@ contrast(
   interaction=c('revpairwise','revpairwise', adjust='mvt')
 )
 
-Place_FX2toFXLR <- lmer(Place_FX2toFXLR ~ Block*Hand + (1|Subject/Session),
+Place_FX2toFXLR <- lmer(Place_FX2toFXLR ~ Block*Hand + (1|Subject/Round),
                         data=data)
 car::Anova(Place_FX2toFXLR)
 contrast(
@@ -90,7 +90,7 @@ contrast(
   interaction=c('revpairwise','revpairwise', adjust='mvt')
 )
 
-Retrieve_FX2ForceDuration <- lmer(Retrieve_FX2ForceDuration ~ Block*Hand + (1|Subject/Session),
+Retrieve_FX2ForceDuration <- lmer(Retrieve_FX2ForceDuration ~ Block*Hand + (1|Subject/Round),
                                   data=data)
 car::Anova(Retrieve_FX2ForceDuration)
 contrast(
@@ -98,7 +98,7 @@ contrast(
   interaction=c('revpairwise','revpairwise', adjust='mvt')
 )
 
-Retrieve_FX2ForcePeak <- lmer(Retrieve_FX2ForcePeak ~ Block*Hand + (1|Subject/Session),
+Retrieve_FX2ForcePeak <- lmer(Retrieve_FX2ForcePeak ~ Block*Hand + (1|Subject/Round),
                               data=data)
 car::Anova(Retrieve_FX2ForcePeak)
 contrast(
@@ -130,7 +130,7 @@ contrast(
   interaction=c('revpairwise','revpairwise', adjust='mvt')
 )
 
-Retrieve_TYLRtot <- lmer(Retrieve_TYLRtot ~ Block*Hand + (1|Subject/Session),
+Retrieve_TYLRtot <- lmer(Retrieve_TYLRtot ~ Block*Hand + (1|Subject/Round),
                          data=data)
 car::Anova(Retrieve_TYLRtot)
 contrast(

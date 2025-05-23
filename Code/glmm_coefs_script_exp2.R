@@ -1,7 +1,7 @@
-require(readxl)
-require(lme4)
-require(car)
-require(emmeans)
+library(readxl)
+library(lme4)
+library(car)
+library(emmeans)
 
 
 # choose the dataset
@@ -38,7 +38,7 @@ data_retrieve_deliver <- subset(x=data_omit_nan,
 
 # place peg-free hand movement
 # removed (1|Subject/Hand) random effect for before so it's not singular
-model_p_free <- glmer(b_1 ~ Block*Hand*Session + (1+Session|Subject),
+model_p_free <- glmer(b_1 ~ Block*Hand*Round + (1+Round|Subject),
                         family = Gamma(link = "log"),
                         data = data_place_free,
                         control = glmerControl(optimizer = 'bobyqa')
@@ -56,7 +56,7 @@ contrast(
 )
 
 # place collect
-model_pc <- glmer(b_1 ~ Block*Hand*Session + (1+Session|Subject),
+model_pc <- glmer(b_1 ~ Block*Hand*Round + (1+Round|Subject),
                     family = Gamma(link = "log"),
                     data = data_place_collect,
                     control = glmerControl(optimizer = 'bobyqa')
@@ -74,7 +74,7 @@ contrast(
 
 # place transport
 # removed (1|Subject/Hand) random effect for before so it's not singular
-model_p_transport <- glmer(b_1 ~ Block*Hand*Session + (1+Session|Subject),
+model_p_transport <- glmer(b_1 ~ Block*Hand*Round + (1+Round|Subject),
                     family = Gamma(link = "log"),
                     data = data_place_transport,
                     control = glmerControl(optimizer = 'bobyqa')
@@ -94,7 +94,7 @@ contrast(
 
 
 # place deliver
-model_pd <- glmer(b_1 ~ Block*Hand*Session + (1|Subject),
+model_pd <- glmer(b_1 ~ Block*Hand*Round + (1|Subject),
                     family = Gamma(link = "log"),
                     data = data_place_deliver,
                     control = glmerControl(optimizer = 'bobyqa')
@@ -104,7 +104,7 @@ hist(residuals(model_pd), main = "Histogram of Residuals pd", xlab = "Residuals"
 
 
 car::Anova(model_pd)
-emmeans(model_pd, pairwise ~ Block*Hand | Session, type='response')
+emmeans(model_pd, pairwise ~ Block*Hand | Round, type='response')
 contrast(
   regrid(emmeans(model_pd, pairwise ~ Block*Hand)),
   interaction=c('revpairwise','pairwise')
@@ -112,7 +112,7 @@ contrast(
 
 # retrieve peg-free hand movement
 # removed (1|Subject/Hand) random effect for before so it's not singular
-model_r_free <- glmer(b_1 ~ Block*Hand*Session + (1+Session|Subject),
+model_r_free <- glmer(b_1 ~ Block*Hand*Round + (1+Round|Subject),
                         family = Gamma(link = "log"),
                         data = data_retrieve_free,
                         control = glmerControl(optimizer = 'bobyqa')
@@ -131,7 +131,7 @@ contrast(
 
 
 # retrieve collect
-model_rc <- glmer(b_1 ~ Block*Hand*Session + (1+Session|Subject),
+model_rc <- glmer(b_1 ~ Block*Hand*Round + (1+Round|Subject),
                     family = Gamma(link = "log"),
                     data = data_retrieve_collect,
                     control = glmerControl(optimizer = 'bobyqa')
@@ -151,7 +151,7 @@ contrast(
 
 
 # retrieve transport
-model_r_transport <- glmer(b_1 ~ Block*Hand*Session + (1|Subject),
+model_r_transport <- glmer(b_1 ~ Block*Hand*Round + (1|Subject),
                               family = Gamma(link = "log"),
                               data = data_retrieve_transport,
                               control = glmerControl(optimizer = 'bobyqa')
@@ -171,7 +171,7 @@ contrast(
 
 
 # retrieve deliver
-model_rd <- glmer(b_1 ~ Block*Hand*Session + (1+Session|Subject),
+model_rd <- glmer(b_1 ~ Block*Hand*Round + (1+Round|Subject),
                     family = Gamma(link = "log"),
                     data = data_retrieve_deliver,
                     control = glmerControl(optimizer = 'bobyqa')

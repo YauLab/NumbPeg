@@ -1,7 +1,7 @@
-require(readxl)
-require(lme4)
-require(car)
-require(emmeans)
+library(readxl)
+library(lme4)
+library(car)
+library(emmeans)
 
 
 
@@ -39,7 +39,7 @@ data_retrieve_deliver <- subset(x=data_omit_nan,
 # sd(data_place$rsq, na.rm = TRUE) / sqrt(sum(!is.na(data_place$rsq)))
 
 # place peg-free hand movement
-model_p_free <- glmer(b_1 ~ Block*Hand*Session + (1 + Session|Subject),
+model_p_free <- glmer(b_1 ~ Block*Hand*Round + (1 + Round|Subject),
                         family = Gamma(link = "log"),
                         data = data_place_free,
                         control = glmerControl(optimizer = 'bobyqa')
@@ -58,7 +58,7 @@ contrast(
 
 
 # place collect
-model_pc <- glmer(b_1 ~ Block*Hand*Session + (1+Block*Hand|Subject),
+model_pc <- glmer(b_1 ~ Block*Hand*Round + (1+Block*Hand|Subject),
                     family = Gamma(link = "log"),
                     data = data_place_collect,
                     control = glmerControl(optimizer = 'bobyqa')
@@ -78,7 +78,7 @@ contrast(
   )
 
 # place transport
-model_p_transport <- glmer(b_1 ~ Block*Hand*Session + (1+Block*Hand|Subject),
+model_p_transport <- glmer(b_1 ~ Block*Hand*Round + (1+Block*Hand|Subject),
                             family = Gamma(link = "log"),
                             data = data_place_transport,
                             control = glmerControl(optimizer = 'bobyqa')
@@ -97,7 +97,7 @@ contrast(
 
 
 # place deliver
-model_pd <- glmer(b_1 ~ Block*Hand*Session + (1+Block*Hand|Subject),
+model_pd <- glmer(b_1 ~ Block*Hand*Round + (1+Block*Hand|Subject),
                     family = Gamma(link = "log"),
                     data = data_place_deliver,
                     control = glmerControl(optimizer = 'bobyqa')
@@ -116,7 +116,7 @@ contrast(
   )
 
 # retrieve peg-free hand movement
-model_r_free <- glmer(b_1 ~ Block*Hand*Session + (1+Session|Subject),
+model_r_free <- glmer(b_1 ~ Block*Hand*Round + (1+Round|Subject),
                         family = Gamma(link = "log"),
                         data = data_retrieve_free,
                         control = glmerControl(optimizer = 'bobyqa')
@@ -135,7 +135,7 @@ contrast(
 
 
 # retrieve collect
-model_rc <- glmer(b_1 ~ Block*Hand*Session + (1+Session|Subject),
+model_rc <- glmer(b_1 ~ Block*Hand*Round + (1+Round|Subject),
                     family = Gamma(link = "log"),
                     data = data_retrieve_collect,
                     control = glmerControl(optimizer = 'bobyqa')
@@ -153,7 +153,7 @@ contrast(
 )
 
 # retrieve transport
-model_r_transport <- glmer(b_1 ~ Block*Hand*Session + (1+Block*Hand|Subject),
+model_r_transport <- glmer(b_1 ~ Block*Hand*Round + (1+Block*Hand|Subject),
                             family = Gamma(link = "log"),
                             data = data_retrieve_transport,
                             control = glmerControl(optimizer = 'bobyqa')
@@ -172,7 +172,7 @@ contrast(
 
 
 # retrieve deliver
-model_rd <- glmer(b_1 ~ Block*Hand*Session + (1+Session|Subject),
+model_rd <- glmer(b_1 ~ Block*Hand*Round + (1+Round|Subject),
                     family = Gamma(link = "log"),
                     data = data_retrieve_deliver,
                     control = glmerControl(optimizer = 'bobyqa')

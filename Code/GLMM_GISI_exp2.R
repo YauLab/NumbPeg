@@ -45,7 +45,7 @@ retrieve_deliver <- subset(x = data,
                         subset = Phase == 'Retrieve' & Action == 'Deliver' & When == 'during')
 
 
-model_p_free <- lmer(mmDifference ~ Block*Hand*Progress + (1+Session|Subject),
+model_p_free <- lmer(mmDifference ~ Block*Hand*Progress + (1+Round|Subject),
                      data = place_free,
                     )
 
@@ -59,7 +59,7 @@ contrast(emres_p_free, interaction=c('revpairwise','pairwise'), Block*Hand, by='
 emmeans(model_p_free, pairwise ~ Block*Hand)
 
 
-model_pc <- lmer(mmDifference ~ Block*Hand*Progress + (1+Session|Subject),
+model_pc <- lmer(mmDifference ~ Block*Hand*Progress + (1+Round|Subject),
                         data = place_collect,
                         )
 
@@ -72,7 +72,7 @@ contrast(emmeans(model_pc, ~ Block*Hand), interaction=c('revpairwise','pairwise'
 emres_pc <- emmeans(model_pc, pairwise ~ Block*Hand*Progress)
 contrast(emres_pc, interaction=c('revpairwise','pairwise'), Block*Hand, by='Progress', adjust='mvt')
 
-model_p_transport <- lmer(mmDifference ~ Block*Hand*Progress + (1+Session|Subject),
+model_p_transport <- lmer(mmDifference ~ Block*Hand*Progress + (1+Round|Subject),
                           data = place_transport,
                           control = lmerControl(optimizer = 'bobyqa')
                         )
@@ -86,7 +86,7 @@ emres_p_transport <- emmeans(model_p_transport, pairwise ~ Block*Hand*Progress)
 contrast(emres_p_transport, interaction=c('revpairwise','pairwise'), Block*Hand, by='Progress', adjust='mvt')
 
 
-model_pd <- lmer(mmDifference ~ Block*Hand*Progress + (1+Session|Subject),
+model_pd <- lmer(mmDifference ~ Block*Hand*Progress + (1+Round|Subject),
                         data = place_deliver,
                         )
 
@@ -99,7 +99,7 @@ emres_pd <- emmeans(model_pd, pairwise ~ Block*Hand*Progress)
 contrast(emres_pd, interaction=c('revpairwise','pairwise'), Block*Hand, by='Progress', adjust='mvt')
 emmeans(model_pd, pairwise ~ Block*Hand)
 
-model_r_free <- lmer(mmDifference ~ Block*Hand*Progress + (1+Session|Subject),
+model_r_free <- lmer(mmDifference ~ Block*Hand*Progress + (1+Round|Subject),
                      data = retrieve_free,
                      control = lmerControl(optimizer = 'bobyqa')
                     )
@@ -114,7 +114,7 @@ contrast(emres_r_free, interaction =c('revpairwise','pairwise'), Block*Hand, by=
 emmeans(model_r_free, pairwise ~ Block*Hand)
 
 
-model_rc <- lmer(mmDifference ~ Block*Hand*Progress + (1+Session|Subject),
+model_rc <- lmer(mmDifference ~ Block*Hand*Progress + (1+Round|Subject),
                         data = retrieve_collect
                         )
 
@@ -127,7 +127,7 @@ emres_rc <- emmeans(model_rc, pairwise~Block*Hand*Progress)
 contrast(emres_rc, interaction=c('revpairwise','pairwise'),Block*Hand,by='Progress', adjust='mvt')
 emmeans(model_rc, pairwise ~ Block*Hand)
 
-model_r_transport <- lmer(mmDifference ~ Block*Hand*Progress + (1+Session|Subject),
+model_r_transport <- lmer(mmDifference ~ Block*Hand*Progress + (1+Round|Subject),
                           data = retrieve_transport,
                           control = lmerControl(optimizer = 'bobyqa')
                           )
@@ -141,7 +141,7 @@ emres_r_transport <- emmeans(model_r_transport, pairwise~Block*Hand*Progress)
 contrast(emres_r_transport, interaction=c('revpairwise','pairwise'), Block*Hand, by='Progress', adjust='mvt')
 emmeans(model_r_transport, pairwise ~ Block*Hand)
 
-model_rd <- lmer(mmDifference ~ Block*Hand*Progress + (1+Session|Subject),
+model_rd <- lmer(mmDifference ~ Block*Hand*Progress + (1+Round|Subject),
                         data = retrieve_deliver,
                         control = lmerControl(optimizer = 'bobyqa')
                         )
