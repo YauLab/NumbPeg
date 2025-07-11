@@ -5,12 +5,14 @@ library(emmeans)
 library(broom.mixed)
 library(dplyr)
 library(ggplot2)
+library(lmerTest)
 
 data <- read_excel("/path/to/data/force_table_exp2.xlsx")
 
+data$Hand <- relevel(factor(data$Hand), ref="Non-dominant")
 
 
-Place_FXLRForceDuration <- lmer(Place_FXLRForceDuration ~ Block*Hand + (1|Subject/Round),
+Place_FXLRForceDuration <- lmerTest::lmer(Place_FXLRForceDuration ~ Block*Hand + (1|Subject/Round),
                                 data=data)
 car::Anova(Place_FXLRForceDuration)
 contrast(
@@ -18,7 +20,7 @@ contrast(
   interaction=c('revpairwise','revpairwise', adjust='mvt')
 )
 
-Place_FXLRForcePeak <- lmer(Place_FXLRForcePeak ~ Block*Hand + (1|Subject/Round),
+Place_FXLRForcePeak <- lmerTest::lmer(Place_FXLRForcePeak ~ Block*Hand + (1|Subject/Round),
                             data=data)
 car::Anova(Place_FXLRForcePeak)
 contrast(
@@ -26,7 +28,7 @@ contrast(
   interaction=c('revpairwise','revpairwise', adjust='mvt')
 )
 
-Place_FX2ForceDuration <- lmer(Place_FX2ForceDuration ~ Block*Hand + (1|Subject),
+Place_FX2ForceDuration <- lmerTest::lmer(Place_FX2ForceDuration ~ Block*Hand + (1|Subject),
                                data=data)
 car::Anova(Place_FX2ForceDuration)
 contrast(
@@ -34,7 +36,7 @@ contrast(
   interaction=c('revpairwise','revpairwise', adjust='mvt')
 )
 
-Place_FX2ForcePeak <- lmer(Place_FX2ForcePeak ~ Block*Hand + (1|Subject),
+Place_FX2ForcePeak <- lmerTest::lmer(Place_FX2ForcePeak ~ Block*Hand + (1|Subject),
                            data=data)
 car::Anova(Place_FX2ForcePeak)
 contrast(
@@ -42,7 +44,7 @@ contrast(
   interaction=c('revpairwise','revpairwise', adjust='mvt')
 )
 
-Place_FXLRtoFX2 <- lmer(Place_FXLRtoFX2 ~ Block*Hand + (1|Subject),
+Place_FXLRtoFX2 <- lmerTest::lmer(Place_FXLRtoFX2 ~ Block*Hand + (1|Subject),
                         data=data)
 car::Anova(Place_FXLRtoFX2)
 contrast(
@@ -50,7 +52,7 @@ contrast(
   interaction=c('revpairwise','revpairwise', adjust='mvt')
 )
 
-Place_FX2toFXLR <- lmer(Place_FX2toFXLR ~ Block*Hand + (1|Subject/Round),
+Place_FX2toFXLR <- lmerTest::lmer(Place_FX2toFXLR ~ Block*Hand + (1|Subject/Round),
                         data=data)
 car::Anova(Place_FX2toFXLR)
 contrast(
@@ -58,7 +60,7 @@ contrast(
   interaction=c('revpairwise','revpairwise', adjust='mvt')
 )
 
-Place_TY2tot <- lmer(Place_TY2tot ~ Block*Hand + (1|Subject),
+Place_TY2tot <- lmerTest::lmer(Place_TY2tot ~ Block*Hand + (1|Subject),
                      data=data)
 car::Anova(Place_TY2tot)
 contrast(
@@ -66,7 +68,7 @@ contrast(
   interaction=c('revpairwise','revpairwise', adjust='mvt')
 )
 
-Place_TYLRtot <- lmer(Place_TYLRtot ~ Block*Hand + (1|Subject),
+Place_TYLRtot <- lmerTest::lmer(Place_TYLRtot ~ Block*Hand + (1|Subject),
                       data=data)
 car::Anova(Place_TYLRtot)
 contrast(
@@ -74,7 +76,7 @@ contrast(
   interaction=c('revpairwise','revpairwise', adjust='mvt')
 )
 
-Retrieve_FXLRForceDuration <- lmer(Retrieve_FXLRForceDuration ~ Block*Hand + (1|Subject),
+Retrieve_FXLRForceDuration <- lmerTest::lmer(Retrieve_FXLRForceDuration ~ Block*Hand + (1|Subject),
                                    data=data)
 car::Anova(Retrieve_FXLRForceDuration)
 contrast(
@@ -82,7 +84,7 @@ contrast(
   interaction=c('revpairwise','revpairwise', adjust='mvt')
 )
 
-Retrieve_FXLRForcePeak <- lmer(Retrieve_FXLRForcePeak ~ Block*Hand + (1|Subject),
+Retrieve_FXLRForcePeak <- lmerTest::lmer(Retrieve_FXLRForcePeak ~ Block*Hand + (1|Subject),
                                data=data)
 car::Anova(Retrieve_FXLRForcePeak)
 contrast(
@@ -90,7 +92,7 @@ contrast(
   interaction=c('revpairwise','revpairwise', adjust='mvt')
 )
 
-Retrieve_FX2ForceDuration <- lmer(Retrieve_FX2ForceDuration ~ Block*Hand + (1|Subject/Round),
+Retrieve_FX2ForceDuration <- lmerTest::lmer(Retrieve_FX2ForceDuration ~ Block*Hand + (1|Subject/Round),
                                   data=data)
 car::Anova(Retrieve_FX2ForceDuration)
 contrast(
@@ -98,7 +100,7 @@ contrast(
   interaction=c('revpairwise','revpairwise', adjust='mvt')
 )
 
-Retrieve_FX2ForcePeak <- lmer(Retrieve_FX2ForcePeak ~ Block*Hand + (1|Subject/Round),
+Retrieve_FX2ForcePeak <- lmerTest::lmer(Retrieve_FX2ForcePeak ~ Block*Hand + (1|Subject/Round),
                               data=data)
 car::Anova(Retrieve_FX2ForcePeak)
 contrast(
@@ -106,7 +108,7 @@ contrast(
   interaction=c('revpairwise','revpairwise', adjust='mvt')
 )
 
-Retrieve_FXLRtoFX2 <- lmer(Retrieve_FXLRtoFX2 ~ Block*Hand + (1|Subject),
+Retrieve_FXLRtoFX2 <- lmerTest::lmer(Retrieve_FXLRtoFX2 ~ Block*Hand + (1|Subject),
                            data=data)
 car::Anova(Retrieve_FXLRtoFX2)
 contrast(
@@ -114,7 +116,7 @@ contrast(
   interaction=c('revpairwise','revpairwise', adjust='mvt')
 )
 
-Retrieve_FX2toFXLR <- lmer(Retrieve_FX2toFXLR ~ Block*Hand + (1|Subject),
+Retrieve_FX2toFXLR <- lmerTest::lmer(Retrieve_FX2toFXLR ~ Block*Hand + (1|Subject),
                            data=data)
 car::Anova(Retrieve_FX2toFXLR)
 contrast(
@@ -122,7 +124,7 @@ contrast(
   interaction=c('revpairwise','revpairwise', adjust='mvt')
 )
 
-Retrieve_TY2tot <- lmer(Retrieve_TY2tot ~ Block*Hand + (1|Subject),
+Retrieve_TY2tot <- lmerTest::lmer(Retrieve_TY2tot ~ Block*Hand + (1|Subject),
                         data=data)
 car::Anova(Retrieve_TY2tot)
 contrast(
@@ -130,7 +132,7 @@ contrast(
   interaction=c('revpairwise','revpairwise', adjust='mvt')
 )
 
-Retrieve_TYLRtot <- lmer(Retrieve_TYLRtot ~ Block*Hand + (1|Subject/Round),
+Retrieve_TYLRtot <- lmerTest::lmer(Retrieve_TYLRtot ~ Block*Hand + (1|Subject/Round),
                          data=data)
 car::Anova(Retrieve_TYLRtot)
 contrast(
@@ -139,96 +141,46 @@ contrast(
 )
 
 # Table -------------------------------------------------------------------
-
-# List of model names and corresponding model objects
 model_list <- list(
-  Place_FXLRForceDuration = Place_FXLRForceDuration,
-  Place_FXLRForcePeak = Place_FXLRForcePeak,
-  Place_FX2ForceDuration = Place_FX2ForceDuration,
-  Place_FX2ForcePeak = Place_FX2ForcePeak,
-  Place_FXLRtoFX2 = Place_FXLRtoFX2,
-  Place_FX2toFXLR = Place_FX2toFXLR,
-  Place_TY2tot = Place_TY2tot,
-  Place_TYLRtot = Place_TYLRtot,
-  Retrieve_FXLRForceDuration = Retrieve_FXLRForceDuration,
-  Retrieve_FXLRForcePeak = Retrieve_FXLRForcePeak,
-  Retrieve_FX2ForceDuration = Retrieve_FX2ForceDuration,
-  Retrieve_FX2ForcePeak = Retrieve_FX2ForcePeak,
-  Retrieve_FXLRtoFX2 = Retrieve_FXLRtoFX2,
-  Retrieve_FX2toFXLR = Retrieve_FX2toFXLR,
-  Retrieve_TY2tot = Retrieve_TY2tot,
-  Retrieve_TYLRtot = Retrieve_TYLRtot
+  Coarse_collect_ForceDuration = Place_FXLRForceDuration,
+  Coarse_collect_ForcePeak = Place_FXLRForcePeak,
+  Precise_deliver_ForceDuration = Place_FX2ForceDuration,
+  Precise_deliver_ForcePeak = Place_FX2ForcePeak,
+  Place_transport = Place_FXLRtoFX2,
+  Place_pegFree = Place_FX2toFXLR,
+  Precise_deliver_totTorque = Place_TY2tot,
+  Coarse_collect_totTorque = Place_TYLRtot,
+  Coarse_deliver_ForceDuration = Retrieve_FXLRForceDuration,
+  Coarse_deliver_ForcePeak = Retrieve_FXLRForcePeak,
+  Precise_collect_ForceDuration = Retrieve_FX2ForceDuration,
+  Precise_collect_ForcePeak = Retrieve_FX2ForcePeak,
+  Retrieve_pegFree = Retrieve_FXLRtoFX2,
+  Retrieve_transport = Retrieve_FX2toFXLR,
+  Precise_collect_totTorque = Retrieve_TY2tot,
+  Coarse_deliver_totTorque = Retrieve_TYLRtot
 )
 
-# Create summary table from Anova
-anova_summary <- lapply(names(model_list), function(name) {
-  model <- model_list[[name]]
-  aov_result <- car::Anova(model)
-  aov_df <- as.data.frame(aov_result)
-  aov_df$Term <- rownames(aov_df)
-  aov_df$Model <- name
-  return(aov_df)
-}) %>% bind_rows() %>%
-  select(Model, Term, everything()) %>%
-  arrange(Model, Term)
-
-# Print summary
-print(anova_summary)
-
-# Clean up the data
-anova_plot_data <- anova_summary %>%
-  filter(!is.na(`Pr(>Chisq)`)) %>%
-  mutate(Significance = case_when(
-    `Pr(>Chisq)` < 0.001 ~ "***",
-    `Pr(>Chisq)` < 0.01 ~ "**",
-    `Pr(>Chisq)` < 0.05 ~ "*",
-    TRUE ~ ""
-  ))
-
-# Plot
-ggplot(anova_plot_data, aes(x = Term, y = Model, fill = `Pr(>Chisq)`)) +
-  geom_tile(color = "white") +
-  geom_text(aes(label = Significance), color = "black", size = 4) +
-  scale_fill_gradient(low = "#fef0d9", high = "#d7301f", name = "p-value") +
-  theme_minimal(base_size = 12) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(
-    title = "ANOVA Results by Model",
-    x = "Term",
-    y = "Model"
-  )
-
-posthoc_summary <- lapply(names(model_list), function(name) {
-  model <- model_list[[name]]
-  emms <- emmeans(model, pairwise ~ Block*Hand)
-  contr <- summary(contrast(emms, interaction = c("revpairwise", "revpairwise")))
-  contr_df <- as.data.frame(contr)
-  contr_df$Model <- name
-  return(contr_df)
-}) %>% bind_rows()
-
-# Print pairwise comparisons
-print(posthoc_summary)
-
-
-posthoc_plot_data <- posthoc_summary %>%
-  filter(grepl("B", Block_revpairwise)) %>%
-  mutate(Significance = case_when(
-    p.value < 0.001 ~ "***",
-    p.value < 0.01 ~ "**",
-    p.value < 0.05 ~ "*",
-    TRUE ~ ""
-  ))
-
-# Plot
-ggplot(posthoc_plot_data, aes(x = Block_revpairwise, y = Model, fill = p.value)) +
-  geom_tile(color = "white") +
-  geom_text(aes(label = Significance), size = 4) +
-  scale_fill_gradient(low = "#e0ecf4", high = "#8856a7", name = "p-value") +
-  theme_minimal(base_size = 12) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(
-    title = "Post-Hoc Pairwise Comparisons",
-    x = "Contrast",
-    y = "Model"
-  )
+for (i in seq_along(model_list)) {
+  model <- model_list[[i]]
+  model_name <- names(model_list)[i]
+  model_summary <- summary(model)
+  coefs <- as.data.frame(model_summary$coefficients)
+  
+  # Round for readability
+  coefs_rounded <- round(coefs,3)
+  
+  # Add row names as a column
+  coefs_rounded$Term <- rownames(coefs)
+  coefs_rounded <- coefs_rounded[, c("Term", colnames(coefs)[1:5])] # Reorder columns
+  
+  # Make the table figure
+  table_plot <- ggtexttable(coefs_rounded, rows = NULL, theme = ttheme("light"))
+  
+  # Add a title to each plot
+  table_plot <- annotate_figure(table_plot,
+                                top = text_grob(paste(model_name, "Summary"),
+                                                face = "bold", size = 14))
+  
+  # Plot it
+  print(table_plot)
+}
